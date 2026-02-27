@@ -1,14 +1,201 @@
 body {
   font-family: Arial;
   padding: 40px;
+  background-color: rgba(186, 219, 246, 0.762);
+  height: 100pvh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 input {
   display: block;
   margin: 10px 0;
   padding: 8px;
+  border-radius: 7px;
 }
-
+#todoInput {
+   display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 95%;
+    border-radius: 0;
+    
+}
+#descInput{
+  display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 95%;
+    height: 50px;
+}
 button {
   padding: 8px 12px;
+  border-radius: 8px;
+  display: block;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  background-color: rgb(152, 152, 238);
+}
+
+.container {
+  background-color: rgb(161 201 241);
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 170px;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 600vh;
+  max-height: 500rem;
+}
+.container h2 {
+  text-align: center;
+  font-size: 45px;
+}
+
+.login-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reg-container {
+  background-color: rgb(161 201 241);
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+}
+.reg-container h2 {
+  text-align: center;
+  font-size: 45px;
+}
+.reg-items {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.todo-input {
+  display: block;
+  flex-direction: row;
+}
+.todo-container {
+  background-color: white;
+    /* height: 550px; */
+    width: 450px;
+    padding: 15px;
+    display: block;
+}
+
+.radio-btn {
+  display: flex;
+    gap: 20px;
+    margin-right: 10px;
+}
+.radio-inline {
+  display: flex;
+  align-items: center; /* Centers the dot and text vertically */
+  gap: 8px;            /* Space between the radio circle and the word */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.type-add {
+  display: flex;
+    justify-content: space-between;
+}
+.add-btn {
+    font-size: 20px;
+    background-color: rgb(143, 187, 241);
+}
+
+.todo-container p {
+  color: rgb(71, 68, 68);
+}
+.edtBtn{
+  background-color: rgb(179, 116, 238);
+    padding: 5px;
+    border-radius: 0;
+    border: 0px;
+}
+.edtBtn i {
+  color: white;
+}
+.edtBtn:hover{
+  background-color: rgb(169, 90, 243);
+  cursor: pointer;
+}
+.edtBtn i:hover{
+  color: black;
+}
+.dltBtn i {
+  color: white;
+}
+.dltBtn {
+  background-color: rgb(241, 131, 131);
+  padding: 5px;
+  border-radius: 0;
+  border: 0px;
+}
+.dltBtn:hover{
+  background-color: rgb(233, 70, 70);
+  cursor: pointer;
+}
+.dltBtn i:hover{
+  color: black;
+}
+.todo-actions {
+  display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+}
+.todo-info {
+  display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 5px;
+}
+ul {
+  list-style: none; /* This removes the dots */
+  padding: 0;       /* Removes the default indentation */
+  margin: 0;        /* Removes default browser margins */
+}
+.checkbox{
+  display: flex;
+   gap: 10px;
+    width: 78%;
+}
+.task-container {
+  display: flex;
+    padding: 20px;
+     background-color: rgb(231, 239, 231);
+     margin-bottom: 10px;
+}
+.logout {
+  background-color: rgb(227, 170, 142);
+    margin-left: auto;
+    border: 2px solid black;
+    padding: 8px 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+.logout:hover {
+  background-color: rgb(237, 140, 43);
 }

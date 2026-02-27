@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Todo App</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
+  <div class="todo-container">
+    <h2>My Todos</h2>
+    <div class="todo-input">
+      <input type="text" id="todoInput" placeholder="Enter todo">
+      <textarea type="text" id="descInput" placeholder="Enter description"></textarea>
+    </div>
 
-  <h2>My Todos</h2>
+    <div class="type-add">
+      <div class="radio-btn">
+        <label class="radio-inline">
+          <input type="radio" name="todoType" value="Personal"> Personal
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="todoType" value="Professional"> Professional
+        </label>
+      </div>
+      <div class="add">
+        <button class="add-btn" onclick="addTodo()">+</button>
+      </div>
+    </div>
 
-  <input type="text" id="todoInput" placeholder="Enter todo">
-  <textarea type="text" id="descInput" placeholder="Enter description"></textarea>
-  <div class="type-container">
-    <label class="radio-inline">
-      <input type="radio" name="todoType" value="Personal"> Personal
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="todoType" value="Professional"> Professional
-    </label>
+    <div class="todo-sections">
+      <div class="partition">
+        <h3>Personal Tasks</h3>
+        <ul id="personalList"></ul>
+      </div>
+      <div class="partition">
+        <h3>Professional Tasks</h3>
+        <ul id="professionalList"></ul>
+      </div>
+    </div>
+    <ul id="todoList"></ul>
   </div>
-  <button onclick="addTodo()">Add</button>
-
-
-  <ul id="todoList"></ul>
-
-  <button onclick="logout()">Logout</button>
-
+  <button class="logout" onclick="logout()">Logout</button>
   <script src="app.js"></script>
-
 </body>
+
 </html>

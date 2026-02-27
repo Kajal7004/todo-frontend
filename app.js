@@ -62,20 +62,24 @@ function register() {
     });
 }
 
-// FETCH TODOS
+
+
 function fetchTodos() {
   const token = localStorage.getItem("token");
 
+
+  const personalList = document.getElementById("personalList");
+  const professionalList = document.getElementById("professionalList");
+
+  personalList.innerHTML = "";
+  professionalList.innerHTML = "";
+
   fetch(`${API_URL}/todos`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    headers: { Authorization: `Bearer ${token}` }
   })
     .then(res => res.json())
     .then(data => {
-      const list = document.getElementById("todoList");
-      list.innerHTML = "";
-
+      console.log("data", data);
       if (!Array.isArray(data)) {
         console.log("Expected array but got ", data);
         return;
@@ -83,36 +87,46 @@ function fetchTodos() {
 
       data.forEach(todo => {
         const li = document.createElement("li");
-        li.innerText = todo.title;
+
 
         li.innerHTML = `
-    <div class="todo-container">
-        <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleComplete('${todo._id}', this.checked)"></input>
+        <div class="task-container">
+            <div class="checkbox">
+              <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleComplete('${todo._id}', this.checked, this)">
+              <div class="todo-info">
+                  <strong style="${todo.completed}">${todo.title}</strong>
+                  <p>${todo.description || ""} </p>
+              </div>
+              </div>
+              <div class="todo-actions"></div>
+            </div>`;
 
-        <div class="todo-info">
-            <span class="type-badge">${todo.type}</span> 
-            <strong>${todo.title}</strong>
-            <p>${todo.description || ""}</p>
-        </div>
-    </div>
-`;
 
-        //  EDIT BUTTON
+        const actionsDiv = li.querySelector(".todo-actions");
+
         const editBtn = document.createElement("button");
-        editBtn.innerText = "Edit";
+
+        editBtn.className = "edtBtn";
+        editBtn.innerHTML = '<i class="material-icons">edit</i>';
         editBtn.onclick = () => editTodo(todo._id, todo.title, todo.description);
 
-        // DELETE BUTTON
         const deleteBtn = document.createElement("button");
-        deleteBtn.innerText = "Delete";
+        deleteBtn.className = "dltBtn";
+        deleteBtn.innerHTML = '<i class="material-icons">delete</i>';
         deleteBtn.onclick = () => deleteTodo(todo._id);
-        li.appendChild(editBtn);
-        li.appendChild(deleteBtn);
-        list.appendChild(li);
+
+        actionsDiv.appendChild(editBtn);
+        actionsDiv.appendChild(deleteBtn);
+
+
+        if (todo.type === "Professional") {
+          professionalList.appendChild(li);
+        } else {
+          personalList.appendChild(li);
+        }
       });
     });
 }
-
 // ADD TODO
 function addTodo() {
   const token = localStorage.getItem("token");
@@ -137,9 +151,17 @@ function addTodo() {
     });
 }
 //Checkbox toggle function
-async function toggleComplete(id, isChecked) {
+async function toggleComplete(id, isChecked, checkbox) {
   const token = localStorage.getItem("token");
 
+  const title = checkbox.parentElement.querySelector('strong');
+
+
+  if (isChecked) {
+    title.style.textDecoration = "line-through";
+  } else {
+    title.style.textDecoration = "none";
+  }
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {
       method: "PUT",
@@ -161,8 +183,12 @@ async function editTodo(id, oldTitle, oldDescription) {
   const token = localStorage.getItem("token");
   const newTitle = prompt("Edit todo", oldTitle);
   const newDescription = prompt("Edit todo", oldDescription);
+  console.log("new title", newTitle);
 
   if (!newTitle) return;
+
+  console.log("calling API");
+
 
   await fetch(`http://localhost:5000/api/todos/${id}`, {
     method: "PUT",
